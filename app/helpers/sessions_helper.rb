@@ -18,12 +18,16 @@ module SessionsHelper
 				!current_user.nil?
 		end
 
+		def deny_access
+				redirect_to signin_path, :notice => "Please sign in to access this page"
+		end
+
 		private
-			
+
 			def user_from_remember_token
 					User.authenticate_with_salt(*remember_token)
 			end
-
+	
 			def remember_token
 					cookies.signed[:remember_token] || [nil, nil]
 			end
