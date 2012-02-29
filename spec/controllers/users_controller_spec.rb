@@ -221,7 +221,7 @@ describe UsersController do
 						end
 
 						it "should require matching users for 'update'" do
-								get :edit, :id => @user, :user => {}
+								put :update, :id => @user, :user => {}
 								response.should redirect_to(root_path)
 						end
 				end

@@ -27,20 +27,20 @@ module SessionsHelper
 				user == current_user
 		end
 
-		def store_location
-				session[:return_to] = request.fullpath
-		end
-
 		def redirect_back_or(default)
 				redirect_to(session[:return_to] || default)
 				clear_return_to
 		end
 
-		def clear_return_to
-				session[:return_to] = nil
-		end
-
 		private
+
+			def store_location
+					session[:return_to] = request.fullpath
+			end
+
+			def clear_return_to
+					session[:return_to] = nil
+			end
 
 			def user_from_remember_token
 					User.authenticate_with_salt(*remember_token)
