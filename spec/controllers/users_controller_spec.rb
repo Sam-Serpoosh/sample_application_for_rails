@@ -95,6 +95,13 @@ describe UsersController do
 						response.should have_selector("input[name='user[password_confirmation]'][type='password']")
 				end
 
+				it "should redirect signed users to root path" do
+						user = Factory(:user)
+						test_sign_in(user)
+						get :new
+						response.should redirect_to(root_path)
+				end
+
 		end
 
 		describe "GET 'show'" do
@@ -150,6 +157,13 @@ describe UsersController do
 						it "should render the 'new' page" do
 								post :create, :user => @attr
 								response.should render_template('new')
+						end
+
+						it "should redirec_to root path signed-in users" do
+								user = Factory(:user)
+								test_sign_in(user)
+								post :create, :user => @attr
+								response.should redirect_to(root_path)
 						end
 				end
 

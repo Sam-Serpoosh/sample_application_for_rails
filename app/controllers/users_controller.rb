@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 		before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
 		before_filter :correct_user, :only => [:edit, :update]
 		before_filter :admin_user, :only => :destroy
+		before_filter :already_existed_users, :only => [:new, :create]
 
 		def index
 				@users = User.paginate(:page => params[:page])
@@ -64,6 +65,10 @@ class UsersController < ApplicationController
 			def admin_user
 					user = User.find(params[:id])
 					redirect_to(root_path) if !current_user.admin? || current_user?(User.find(params[:id]))
+			end
+
+			def already_existed_users
+					redirect_to(root_path) unless !signed_in?
 			end
 
 end
