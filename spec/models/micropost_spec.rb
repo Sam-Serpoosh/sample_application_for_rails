@@ -4,7 +4,7 @@ describe Micropost do
 		
 		before do
 				@user = Factory(:user)
-				@attr = { :content => "lorem ipsum" }
+				@attr = { :content => "value for content"}
 		end
 
 		it "should create new instance with valid attributes" do
