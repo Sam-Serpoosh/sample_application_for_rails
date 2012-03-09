@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 		def home
 				@title = "Home"
+				@micropost = Micropost.new
 		end
 
 		def contact
