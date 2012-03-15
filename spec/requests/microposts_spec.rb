@@ -24,7 +24,7 @@ describe "Microposts" do
 
 				describe "success" do
 						it "should make a new micropost" do
-								content = "Lorem ipsum dolor sit amet"
+								content = "Lorem ipsum dollor sit amet"
 								lambda do
 										visit root_path
 										fill_in :micropost_content, :with => content
