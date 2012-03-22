@@ -35,12 +35,19 @@ describe Relationship do
   end
 
   describe "Validations" do
+
+	before do
+			@relationship = @follower.relationships.create!(@attr)
+	end
+
     it "should require a follower id" do
-      Relationship.new(@attr).should_not be_valid
+			@relationship.follower_id = nil
+			@relationship.should_not be_valid
     end
 
     it "should require a followed id" do
-      @follower.relationships.build.should_not be_valid
+			@relationship.followed_id = nil
+			@relationship.should_not be_valid
     end
   end
 

@@ -193,6 +193,10 @@ describe User do
           @user.should respond_to(:relationships)
         end
 
+		it "should have following method" do
+		  @user.should respond_to(:following)
+		end
+
         it "should have a follow! method" do
           @user.should respond_to(:following)
         end
