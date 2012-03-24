@@ -7,7 +7,7 @@ class CreateRelationships < ActiveRecord::Migration
       t.timestamps
     end
     add_index :relationships, :follower_id
-    add_index :realationships, :followed_id
+    add_index :relationships, :followed_id
   end
 
   def self.down
