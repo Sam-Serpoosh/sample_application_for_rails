@@ -153,7 +153,16 @@ describe UsersController do
 						10.times { Factory(:micropost, :user => @user, :content => "foo bar") }
 						get :show, :id => @user
 						response.should have_selector('td.sidebar', :content => @user.microposts.count.to_s)
-				end
+        end
+
+      describe "when signed in as another user" do
+        it "should be successful" do
+          user = Factory(:user, :email => Factory.next(:email))
+          test_sign_in(user)
+          get :show, :id => @user
+          response.should be_success
+        end
+      end
 
 		end
 
