@@ -13,6 +13,7 @@ describe Relationship do
   end
 
   describe "follow methods" do
+
     before do
       @relationship = @follower.relationships.create!(@attr)
     end
@@ -32,13 +33,14 @@ describe Relationship do
     it "should have the right followed" do
       @relationship.followed.should == @followed
     end
+
   end
 
   describe "Validations" do
 
-	before do
-			@relationship = @follower.relationships.create!(@attr)
-	end
+    before do
+        @relationship = @follower.relationships.create!(@attr)
+    end
 
     it "should require a follower id" do
 			@relationship.follower_id = nil
@@ -49,6 +51,7 @@ describe Relationship do
 			@relationship.followed_id = nil
 			@relationship.should_not be_valid
     end
+
   end
 
 end
