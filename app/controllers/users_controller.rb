@@ -29,6 +29,12 @@ class UsersController < ApplicationController
       render 'show_follow'
     end
 
+    def microposts
+      user = User.find(params[:id])
+      @feed_items = user.microposts.paginate(:page => params[:page])
+      render 'show_microposts'
+    end
+
 		def new
 				@user = User.new
 				@title = "Sign up"

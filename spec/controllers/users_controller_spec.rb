@@ -415,4 +415,40 @@ describe UsersController do
       end
     end
 
+    describe "microposts page" do
+      
+      describe "when not signed-in" do
+
+        it "should protect 'microposts'" do
+          get :microposts, :id => 1
+          response.should redirect_to(signin_path)
+        end
+
+      end
+
+      describe "when signed-in" do
+
+        before do
+          @user = Factory(:user)
+          test_sign_in(@user)
+          @mp1 = Factory(:micropost, :user => @user)
+        end
+
+        it "should show user's microposts" do
+          get :microposts, :id => @user
+          response.should have_selector("span", :content => @mp1.content)
+          response.should have_selector("span", :content => "ago")
+        end
+
+        it "should not show other users microposts" do
+          @other_user = Factory(:user, :email => Factory.next(:email))
+          mp2 = Factory(:micropost, :content => "Other Post", :user => @other_user)
+          get :microposts, :id => @user
+          response.should_not have_selector("span", :content => mp2.content)
+        end
+        
+      end
+
+    end
+
 end
