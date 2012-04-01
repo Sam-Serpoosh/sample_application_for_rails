@@ -53,7 +53,7 @@ describe Micropost do
           @user.follow!(@other_user)
         end
 
-        it "should have a from_users_followed_by method" do
+        it "should have a from_users_followed_by calss method" do
           Micropost.should respond_to(:from_users_followed_by)
         end
 
